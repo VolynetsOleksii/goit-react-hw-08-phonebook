@@ -1,14 +1,5 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { contactsReducer } from './contacts/contactsSlice';
-// import { filterReducer } from './filter/filterSlice';
 
-// export const store = configureStore({
-//   reducer: {
-//     contacts: contactsReducer,
-//     filter: filterReducer,
-//   },
-// });
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -19,32 +10,32 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
-import { authReducer } from './auth/slice';
+import { authReducer } from './auth/authSlice';
 import { contactsReducer } from './contacts/contactsSlice';
+import { filterReducer } from './filter/filterSlice';
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
-
-// Persisting token field from auth slice to localstorage
-const authPersistConfig = {
+const persistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistedAuthReducer,
     contacts: contactsReducer,
+    filter: filterReducer,
   },
-  middleware,
-  devTools: process.env.NODE_ENV === 'development',
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

@@ -8,13 +8,13 @@ export const FormStyle = styled.form`
 `;
 
 export const LabelForm = styled.label`
-  color: ${p => p.theme.colors.grey};
+  color: ${props => props.theme.colors.grey};
 `;
 
 export const InputForm = styled.input`
   margin-top: 0px;
   outline: none;
-  border: 1px solid ${p => p.theme.colors.lightBlue};
+  border: 1px solid ${props => props.theme.colors.lightBlue};
   border-radius: 5px;
   &:first-child {
     margin-bottom: 10px;

@@ -9,6 +9,6 @@ export const InputFilter = styled.input`
   display: block;
   margin-top: 0px;
   outline: none;
-  border: 1px solid ${p => p.theme.colors.lightBlue};
+  border: 1px solid ${props => props.theme.colors.lightBlue};
   border-radius: 5px;
 `;

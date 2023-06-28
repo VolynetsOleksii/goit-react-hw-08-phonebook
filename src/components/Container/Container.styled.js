@@ -24,13 +24,13 @@ export const Button = styled.button`
   }
   transition: ${props => props.theme.transition.cubicBezier};
   :hover {
-    border: 1px solid ${p => p.theme.colors.white};
-    background-color: ${p => p.theme.colors.lightBlue};
+    border: 1px solid ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.lightBlue};
     color: ${props => props.theme.colors.white};
   }
   :active {
-    border: 1px solid ${p => p.theme.colors.lightBlue};
-    background-color: ${p => p.theme.colors.white};
+    border: 1px solid ${props => props.theme.colors.lightBlue};
+    background-color: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.lightBlue};
   }
 `;

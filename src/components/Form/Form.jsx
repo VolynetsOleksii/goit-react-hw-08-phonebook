@@ -4,7 +4,6 @@ import { Button } from 'components/Container/Container.styled';
 import { FormStyle, InputForm, LabelForm } from './Form.styled';
 
 export const ContactForm = ({ onSubmit }) => {
-  
   const handleSubmit = evt => {
     evt.preventDefault();
     const name = evt.currentTarget.elements.name.value;
